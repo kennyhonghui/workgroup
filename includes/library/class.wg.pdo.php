@@ -11,9 +11,9 @@ class WG_PDO implements WG_Database{
     private $port;
     private $charset;
     private $dbname;
-    private  $transactionpool;
 
-    public  $dbh;
+    private $stmt;
+    private $dbh;
 
     /**
      * @param $dsn
@@ -57,68 +57,48 @@ class WG_PDO implements WG_Database{
         }
     }
 
-    public function select( $sql ){
-        if( empty($sql) )  return false;
-        try {
-            $args = func_get_args();
-            var_dump($args);
-
-
-            //return $rs;
-
-        } catch( PDOException $e) {
-            return $e;
-        }
-    }
-
-
     /**
      *  begin a transaction process, and reset transaction pool.
      */
     public function beginTransaction(){
-        $this -> transactionpool = array();
-    }
-
-    /**
-     * @param $statement
-     * @param array $params
-     * @return bool
-     */
-    public function preare($statement){
-        if( gettype($statement) !== 'string' ) return false;
-        $args = func_get_args();
-
-        if( count($args) === 1 ) {
-            array_push( $this -> transactionpool, $statement);
-        } else {
-            array_push( $this -> transactionpool, array( 'sql' => $statement, 'params' => (array)$params ) );
-        }
-        return true;
+        $this -> dbh -> beginTransaction();
     }
 
     /**
      * Try to execute the SQL statements and commit it.
+     * @return string
      */
     public function commit(){
-        try {
-            $statements =  $this -> transactionpool;
-            $this -> dbh -> beginTransaction();
+        $this -> dbh -> commit();
+    }
 
-            foreach( $statements as $index => $statement ) {
-                if( gettype($statement) === 'string' ){
-                    $stmt =  $this -> dbh -> prepare( $statement );
-                    $stmt -> execute();
-                } elseif ( gettype($statement) === 'array' ) {
-                    $stmt =  $this -> dbh -> prepare( $statement['sql'] );
-                    foreach( $statement['params'] as $v ){
-                       $stmt -> execute( (array)$v );
-                    }
-                }
-            }
-            $this -> dbh ->commit();
-            $this -> transactionpool = array();
-        } catch(PDOException $e) {
-            $this -> dbh -> rollBack();
+    /**
+     * @param $statement
+     * @return bool
+     */
+    public function prepare($statement){
+        if( empty($statement) ) return false;
+
+        if( is_array( $statement ) ){
+            echo $this -> arrayToSQLStatement( $statement );
+        } else {
+            $this -> stmt = $this -> dbh -> prepare( $statement );
+            return $this -> stmt;
+        }
+    }
+
+    /**
+     * Execute SQL statement which prepared.
+     */
+    public function exec(){
+        $params = func_get_args();
+
+        if( empty($params) || empty($this -> stmt ))  return false;
+
+        try {
+            $rs = $this -> stmt -> execute( $params );
+            return $rs;
+        } catch ( PDOException $e ) {
             echo $e -> getMessage();
         }
     }
@@ -132,5 +112,53 @@ class WG_PDO implements WG_Database{
         $this -> charset = DB_CHARSET;
         $this -> dsn     = "mysql:host=" . $this -> host . ";port=" . $this -> port . ";charset=" . $this -> charset . ";dbname=" . $this -> dbname;
         $this -> dbh     = $this -> connect( $this->dsn, $this->user, $this->pwd );
+    }
+
+    /**
+     * Get a SQL statements through a setting array.
+     * @param $setting
+     * @return bool|string
+     */
+    private function arrayToSQLStatement( $setting ){
+        if( gettype( $setting ) !== 'array' || empty($setting['action']) ) return false;
+
+        $from    = '';
+        if( !empty($setting['from']) ) $from = trim( $setting['from'] );
+        elseif( !empty($setting['table']) ) $from = trim( $setting['table'] );
+        else return false;
+
+        $action  = trim( $setting['action'] );
+        $fields  = trim( $setting['field'] );
+        $where   = trim( $setting['where'] );
+        $orderby = trim( $setting['orderby'] );
+        $order   = trim( $setting['order'] );
+        $limit   = trim( $setting['limit'] );
+
+        $sql     = '';
+        $orders  = array( 'asc', 'desc' );
+
+        switch( $action ) {
+            case 'select':
+                if( empty($fields) ) $fields = '*';
+                if( empty($order) || !in_array( strtolower($order), $orders) )  $order  = 'asc';
+
+                $sql = 'select ' . $fields . ' from ' . $from . ' where ' . $where;
+
+                if( !empty($orderby) )
+                    $sql .= ' order by ' . $orderby . ' ' . $order;
+
+                if( !empty($limit) )
+                    $sql .= ' limit ' . $limit;
+                break;
+
+            case 'update':
+                break;
+            case 'insert':
+                break;
+            case 'delete':
+                break;
+        }
+
+        return $sql;
     }
 }
