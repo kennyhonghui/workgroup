@@ -1,0 +1,4 @@
+<?php
+/**
+ * Dashboard Administration Screen
+ */
