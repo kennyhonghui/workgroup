@@ -13,7 +13,7 @@ class WG_PDO implements WG_Database{
     private $dbname;
 
     private $stmt;
-    private $dbh;
+    private $pdo;
 
     /**
      * @param $dsn
@@ -39,7 +39,7 @@ class WG_PDO implements WG_Database{
         if( strtolower(substr(trim($sql),0,6)) == 'select' ){
             try {
                 $rs = '';
-                $stmt = $this -> dbh -> query( $sql );
+                $stmt = $this -> pdo -> query( $sql );
                 if( $stmt ){
                     $stmt -> setFetchMode(PDO::FETCH_OBJ);
                     $rs = $stmt -> fetchAll();
@@ -50,7 +50,7 @@ class WG_PDO implements WG_Database{
             }
         }else{
             try {
-                return $this -> dbh -> exec( $sql );
+                return $this -> pdo -> exec( $sql );
             } catch ( PDOException $e ){
                 return $e -> getMessage();
             }
@@ -61,7 +61,7 @@ class WG_PDO implements WG_Database{
      *  begin a transaction process, and reset transaction pool.
      */
     public function beginTransaction(){
-        $this -> dbh -> beginTransaction();
+        $this -> pdo -> beginTransaction();
     }
 
     /**
@@ -69,35 +69,54 @@ class WG_PDO implements WG_Database{
      * @return string
      */
     public function commit(){
-        $this -> dbh -> commit();
+        $this -> pdo -> commit();
     }
 
     /**
-     * @param $statement
-     * @return bool
+     * @param $query
+     * @return bool|PDOStatement
      */
-    public function prepare($statement){
-        if( empty($statement) ) return false;
+    public function prepare( $query ){
+        if( empty($query) ) return false;
 
-        if( is_array( $statement ) ){
-            echo $this -> arrayToSQLStatement( $statement );
+        $statement = '';
+        if( is_array($query) ){
+            $statement = $this -> arrayToSQLStatement( $query );
+        } elseif (is_string($query)) {
+            $statement = $query;
         } else {
-            $this -> stmt = $this -> dbh -> prepare( $statement );
-            return $this -> stmt;
+            return false;
         }
+
+        $this -> stmt = $this -> pdo -> prepare( $statement );
+        return $this -> stmt;
     }
 
     /**
      * Execute SQL statement which prepared.
      */
-    public function exec(){
+    public function execute(){
         $params = func_get_args();
+        $params = empty($params) ? array(null) : $params;
 
         if( empty($params) || empty($this -> stmt ))  return false;
 
         try {
-            $rs = $this -> stmt -> execute( $params );
-            return $rs;
+            $queryString = $this -> stmt -> queryString;
+
+            if( substr(trim($queryString), 0, 6) == 'select' ){
+                $this -> stmt -> execute( $params );
+                $this -> stmt -> setFetchMode( PDO::FETCH_OBJ );
+                return $this -> stmt -> fetchAll();
+            } else {
+                $rs = $this -> stmt -> execute( $params );
+                if( $rs ) {
+                    return $this->stmt->rowCount();
+                } else {
+                    return $rs;
+                }
+            }
+
         } catch ( PDOException $e ) {
             echo $e -> getMessage();
         }
@@ -111,7 +130,7 @@ class WG_PDO implements WG_Database{
         $this -> dbname  = DB_NAME;
         $this -> charset = DB_CHARSET;
         $this -> dsn     = "mysql:host=" . $this -> host . ";port=" . $this -> port . ";charset=" . $this -> charset . ";dbname=" . $this -> dbname;
-        $this -> dbh     = $this -> connect( $this->dsn, $this->user, $this->pwd );
+        $this -> pdo     = $this -> connect( $this->dsn, $this->user, $this->pwd );
     }
 
     /**
@@ -120,42 +139,89 @@ class WG_PDO implements WG_Database{
      * @return bool|string
      */
     private function arrayToSQLStatement( $setting ){
-        if( gettype( $setting ) !== 'array' || empty($setting['action']) ) return false;
+        if( !is_array($setting) || empty($setting['action']) || empty($setting) ) return false;
 
-        $from    = '';
-        if( !empty($setting['from']) ) $from = trim( $setting['from'] );
-        elseif( !empty($setting['table']) ) $from = trim( $setting['table'] );
+        $table    = '';
+        if( !empty($setting['from']) ) $table = trim( $setting['from'] );
+        elseif( !empty($setting['table']) ) $table = trim( $setting['table'] );
         else return false;
 
-        $action  = trim( $setting['action'] );
-        $fields  = trim( $setting['field'] );
-        $where   = trim( $setting['where'] );
-        $orderby = trim( $setting['orderby'] );
-        $order   = trim( $setting['order'] );
-        $limit   = trim( $setting['limit'] );
+        $action = trim( $setting['action'] );
+        $fields = trim( $setting['fields'] );
+        $where  = trim( $setting['where'] );
+        $order  = trim( $setting['order'] );
+        $limit  = trim( $setting['limit'] );
+        $values = trim( $setting['values'] );
 
         $sql     = '';
-        $orders  = array( 'asc', 'desc' );
 
         switch( $action ) {
             case 'select':
+                //SELECT `id`, `test`, `test2`, `test3` FROM `wg_test` WHERE 1
+                //SELECT * FROM `wg_test` WHERE 1
                 if( empty($fields) ) $fields = '*';
-                if( empty($order) || !in_array( strtolower($order), $orders) )  $order  = 'asc';
 
-                $sql = 'select ' . $fields . ' from ' . $from . ' where ' . $where;
+                $sql = 'select ' . $fields . ' from ' . $table;
 
-                if( !empty($orderby) )
-                    $sql .= ' order by ' . $orderby . ' ' . $order;
+                if( !empty($where) ) {
+                    $sql .= ' where ' . $where;
+                } else {
+                    return false;
+                }
+
+                if( !empty($order) )
+                    $sql .= ' order by ' . $order;
 
                 if( !empty($limit) )
                     $sql .= ' limit ' . $limit;
                 break;
 
-            case 'update':
-                break;
             case 'insert':
+                //INSERT INTO `wg_test`(`id`, `test`, `test2`, `test3`) VALUES ([value-1],[value-2],[value-3],[value-4])
+                $sql = "insert into " . $table;
+                if( empty($fields) ) return false;
+                else $sql .= ' (' . $fields . ')';
+
+                if( empty($values) ) return false;
+                else $sql .= ' values (' . $values . ')';
+
                 break;
+
+            case 'update':
+                if( empty($fields) || empty($values) )  return false;
+                $fieldsArr   = explode(',', $fields);
+                $valuesArr   = explode(',', $values);
+                $filedsCount = count($fieldsArr);
+                $valuesCount = count($valuesArr);
+
+                if( empty($fieldsArr) || empty($valuesArr) || $filedsCount > $valuesCount ) return false;
+
+                //UPDATE `wg_test` SET `id`=[value-1],`test`=[value-2],`test2`=[value-3],`test3`=[value-4] WHERE 1
+                $sql = "update " . $table . ' set ';
+
+                foreach( $fieldsArr as $n => $f ) {
+                    $sql .= $f . ' = ' . $valuesArr[$n] . ', ';
+                }
+                $sql = substr( $sql, 0, strlen($sql)-2);
+
+                if( !empty($where) ) {
+                    $sql .= ' where ' . $where;
+                } else {
+                    return false;
+                }
+
+                break;
+
             case 'delete':
+                //DELETE FROM `wg_test` WHERE 1
+                $sql = 'delete from ' . $table;
+
+                if( !empty($where) ) {
+                    $sql .= ' where ' . $where;
+                } else {
+                    return false;
+                }
+
                 break;
         }
 

@@ -3,7 +3,8 @@
  * Interface - Database
  */
 interface WG_Database{
-    public function connect($dsn, $user, $pwd);    //connect to database
-    //public function select( $ );
-    //public function todo( $settingArr );         //actions by select/update/insert/delete
+    public function connect($dsn, $user, $pwd);
+    public function query($sql);
+    //public function backup();
+    ///public function close();
 }

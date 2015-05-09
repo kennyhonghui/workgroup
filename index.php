@@ -14,20 +14,29 @@ $wgdb = new WG_PDO();
 
 /*$wgdb -> beginTransaction();
 $wgdb -> prepare( 'insert into wg_test (test, test2, test3) values ( ?,?,? )' );
-$wgdb -> exec( 'a', 'b', date('Ymd', time()) );
-$wgdb -> exec( 'c', 'd', date('Ymd', time()) );
-$wgdb -> exec( 'e', 'f', date('Ymd', time()) );
+$wgdb -> execute( 'a', 'b', date('Ymd', time()) );
+$wgdb -> execute( 'c', 'd', date('Ymd', time()) );
+$wgdb -> execute( 'e', 'f', date('Ymd', time()) );
 $wgdb -> commit();*/
 
+/*$wgdb -> prepare('insert into wg_test (test, test2, test3) values ( ?,?,? )');
+$wgdb -> execute( 'a', 'b', date('Ymd', time()) );
+$wgdb -> execute( 'c', 'd', date('Ymd', time()) );
+$wgdb -> execute( 'e', 'f', date('Ymd', time()) );
+$wgdb -> execute( 'g', 'h', date('Ymd', time()) );*/
 
 
-$setting = array(
-    'action'   => 'select',
-    'fields'    => '*',
-    'from'     => 'wg_test',
-    'where'    => 'test1= ? and test2=?',
-    'orderby'  => 'id',
-    'order'    => 'desc',
-    'limit'    => '1',
+/*$query = array(
+    'action' => 'select',
+    'table'  => 'wg_test',
+    'fields' => 'test,test2,test3',
+    'values' => '?,?,?',
+    'where'  => '1',
+    'order'  => 'id desc',
+    'limit'  => '',
 );
-$wgdb -> prepare( $setting );
+
+$sql = $wgdb -> prepare( $query );
+var_dump($sql);
+$rs1 = $wgdb -> execute( '5' );
+var_dump($rs1);*/
