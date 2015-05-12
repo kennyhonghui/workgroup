@@ -118,8 +118,20 @@ class WG_PDO implements WG_Database{
             }
 
         } catch ( PDOException $e ) {
-            echo $e -> getMessage();
+            return $e -> getMessage();
         }
+    }
+
+    public function select( $param, $returns = 'object' ){
+        return $this -> _select($param, $returns, false);
+     }
+
+    public function selectOne( $param, $returns = 'object' ){
+        return $this -> _select( $param, $returns, true);
+    }
+
+    public function close(){
+
     }
 
     public function __construct(){
@@ -226,5 +238,40 @@ class WG_PDO implements WG_Database{
         }
 
         return $sql;
+    }
+
+    private function _select( $param, $returns, $single = 'true' ){
+        if( empty($param) ) return false;
+        $statement = '';
+        if( is_array($param) ) {
+            $param['action'] = 'select';
+            $statement = $this -> arrayToSQLStatement($param);
+        } elseif( is_string($param) ) {
+            $statement = $param;
+        }
+
+        try {
+            $stmt = $this -> pdo -> query( $statement );
+            if( $stmt ){
+                $type = strtolower($returns) === 'array' ? PDO::FETCH_ASSOC : PDO::FETCH_OBJ;
+                $stmt -> setFetchMode( $type );
+                if( $single === false ){
+                    $rs = $stmt ->fetchAll();
+                    return $rs;
+                } else {
+                    $rs = $stmt -> fetch();
+                    if( false === $rs ){
+                       return array();
+                    }else{
+                        return $rs;
+                    }
+                }
+            } else {
+                return 'Fail to execute SQL statement: ' . $statement;
+            }
+        } catch ( PDOException $e ) {
+            return $e -> getMessage();
+        }
+
     }
 }

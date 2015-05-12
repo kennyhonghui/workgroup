@@ -40,3 +40,19 @@ $sql = $wgdb -> prepare( $query );
 var_dump($sql);
 $rs1 = $wgdb -> execute( '5' );
 var_dump($rs1);*/
+
+
+
+$query = array(
+    'action' => 'select',
+    'table'  => 'wg_test',
+    'fields' => 'test,test2,test3',
+    'values' => '?,?,?',
+    'where'  => 'test2',
+    'order'  => 'id desc',
+    'limit'  => '',
+);
+//$query = 'select test,test2,test3 from wg_test where 1 order by id desc';
+$rs = $wgdb -> selectOne($query, 'array');
+var_dump($rs);
+
