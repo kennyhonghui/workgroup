@@ -11,7 +11,6 @@ require_once(dirname(__FILE__) . '/wg-bootstrap.php');
 
 $wgdb = new WG_PDO();
 
-
 /*$wgdb -> beginTransaction();
 $wgdb -> prepare( 'insert into wg_test (test, test2, test3) values ( ?,?,? )' );
 $wgdb -> execute( 'a', 'b', date('Ymd', time()) );
@@ -43,7 +42,7 @@ var_dump($rs1);*/
 
 
 
-$query = array(
+/*$query = array(
     'action' => 'select',
     'table'  => 'wg_test',
     'fields' => 'test,test2,test3',
@@ -52,7 +51,9 @@ $query = array(
     'order'  => 'id desc',
     'limit'  => '',
 );
-//$query = 'select test,test2,test3 from wg_test where 1 order by id desc';
-$rs = $wgdb -> selectOne($query, 'array');
-var_dump($rs);
+$query = 'select test,test2,test3 from wg_test where 1 order by id desc';
+$rs = $wgdb -> select($query, 'array');
+var_dump($rs);*/
+
+
 

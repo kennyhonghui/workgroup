@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3a11eb1f-8aba-4f3e-976c-7e61147e19ac" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/library/class.wg.database.php" afterPath="$PROJECT_DIR$/includes/library/class.wg.database.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/library/class.wg.pdo.php" afterPath="$PROJECT_DIR$/includes/library/class.wg.pdo.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wg-config.php" afterPath="$PROJECT_DIR$/wg-config.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="HHHADMIN.iws" />
@@ -33,12 +33,12 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.24263674" vertical-offset="547" max-vertical-offset="1280">
-              <caret line="36" column="2" selection-start-line="36" selection-start-column="2" selection-end-line="36" selection-end-column="2" />
+            <state vertical-scroll-proportion="0.79345953" vertical-offset="679" max-vertical-offset="1300">
+              <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
               <folding>
                 <element signature="e#6#45#0#PHP" expanded="true" />
-                <marker date="1431422990368" expanded="true" signature="495:552" placeholder="insert into ..." />
-                <marker date="1431422990368" expanded="true" signature="1289:1350" placeholder="select test,..wg_test..." />
+                <marker date="1431438709082" expanded="true" signature="494:551" placeholder="insert into ..." />
+                <marker date="1431438709082" expanded="true" signature="1288:1349" placeholder="select test,..wg_test..." />
               </folding>
             </state>
           </provider>
@@ -47,11 +47,11 @@
       <file leaf-file-name="class.wg.pdo.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/includes/library/class.wg.pdo.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.076923" vertical-offset="4960" max-vertical-offset="5660">
-              <caret line="265" column="24" selection-start-line="265" selection-start-column="24" selection-end-line="265" selection-end-column="35" />
+            <state vertical-scroll-proportion="-8.038462" vertical-offset="551" max-vertical-offset="5360">
+              <caret line="38" column="19" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="19" />
               <folding>
-                <marker date="1431422938402" expanded="true" signature="5509:5521" placeholder="insert into ..." />
-                <marker date="1431422938402" expanded="true" signature="6832:6844" placeholder="delete from ..." />
+                <marker date="1431438682085" expanded="true" signature="5023:5035" placeholder="insert into ..." />
+                <marker date="1431438682085" expanded="true" signature="6346:6358" placeholder="delete from ..." />
               </folding>
             </state>
           </provider>
@@ -60,8 +60,8 @@
       <file leaf-file-name="class.wg.database.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/includes/library/class.wg.database.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.1538463" vertical-offset="0" max-vertical-offset="360">
-              <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+            <state vertical-scroll-proportion="-7.6923075" vertical-offset="0" max-vertical-offset="360">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -82,7 +82,7 @@
       <file leaf-file-name="wg-loader.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/includes/public/wg-loader.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.1538463" vertical-offset="0" max-vertical-offset="300">
+            <state vertical-scroll-proportion="0.0" vertical-offset="160" max-vertical-offset="300">
               <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding />
             </state>
@@ -92,8 +92,8 @@
       <file leaf-file-name="wg-config.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wg-config.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.0" vertical-offset="0" max-vertical-offset="380">
-              <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="50" />
+            <state vertical-scroll-proportion="-7.6923075" vertical-offset="0" max-vertical-offset="380">
+              <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
               <folding>
                 <element signature="e#6#37#0#PHP" expanded="true" />
               </folding>
@@ -138,8 +138,9 @@
         <option value="$PROJECT_DIR$/wg-bootstrap.php" />
         <option value="$PROJECT_DIR$/includes/public/wg-loader.php" />
         <option value="$PROJECT_DIR$/includes/public/wg-functions.php" />
-        <option value="$PROJECT_DIR$/wg-config.php" />
         <option value="$PROJECT_DIR$/includes/library/class.wg.database.php" />
+        <option value="$PROJECT_DIR$/../../bin/apache/apache2.4.9/conf/httpd.conf" />
+        <option value="$PROJECT_DIR$/wg-config.php" />
         <option value="$PROJECT_DIR$/includes/library/class.wg.pdo.php" />
         <option value="$PROJECT_DIR$/index.php" />
       </list>
@@ -152,8 +153,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1456" />
-    <option name="height" value="876" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -197,6 +198,10 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Problems" />
+        <subPane subId="Tests" />
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -217,15 +222,11 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Problems" />
-        <subPane subId="Tests" />
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="vcs.Git" />
+    <property name="options.lastSelected" value="editor.preferences.appearance" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="FullScreen" value="false" />
@@ -297,13 +298,7 @@
       <option name="project" value="LOCAL" />
       <updated>1431077358600</updated>
     </task>
-    <task id="LOCAL-00004" summary="2015/05/09 : 数据库操作模块优化">
-      <created>1431149604569</created>
-      <option name="number" value="00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1431149604569</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -327,7 +322,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -336,7 +331,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18541667" sideWeight="0.49932885" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1852123" sideWeight="0.49932885" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.247851" sideWeight="0.50067115" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294271" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -394,24 +389,13 @@
     <MESSAGE value="hehe" />
     <MESSAGE value="test complete" />
     <MESSAGE value="2015/05/08: 添加数组参数形式。" />
-    <MESSAGE value="2015/05/09 : 数据库操作模块优化" />
-    <option name="LAST_COMMIT_MESSAGE" value="2015/05/09 : 数据库操作模块优化" />
+    <option name="LAST_COMMIT_MESSAGE" value="2015/05/08: 添加数组参数形式。" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/wg-bootstrap.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="520">
-          <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
-          <folding>
-            <element signature="e#6#30#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/includes/public/wg-loader.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="160" max-vertical-offset="300">
@@ -459,8 +443,8 @@
           <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="66" />
           <folding>
             <element signature="e#6#45#0#PHP" expanded="true" />
-            <marker date="1431422990368" expanded="true" signature="495:552" placeholder="insert into ..." />
-            <marker date="1431422990368" expanded="true" signature="1289:1350" placeholder="select test,..wg_test..." />
+            <marker date="1431438709082" expanded="true" signature="494:551" placeholder="insert into ..." />
+            <marker date="1431438709082" expanded="true" signature="1288:1349" placeholder="select test,..wg_test..." />
           </folding>
         </state>
       </provider>
@@ -470,8 +454,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="1520" max-vertical-offset="2840">
           <caret line="91" column="62" selection-start-line="91" selection-start-column="12" selection-end-line="91" selection-end-column="62" />
           <folding>
-            <marker date="1431422938402" expanded="true" signature="5509:5521" placeholder="insert into ..." />
-            <marker date="1431422938402" expanded="true" signature="6832:6844" placeholder="delete from ..." />
+            <marker date="1431438682085" expanded="true" signature="5023:5035" placeholder="insert into ..." />
+            <marker date="1431438682085" expanded="true" signature="6346:6358" placeholder="delete from ..." />
           </folding>
         </state>
       </provider>
@@ -533,8 +517,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#6#45#0#PHP" expanded="true" />
-            <marker date="1431422990368" expanded="true" signature="495:552" placeholder="insert into ..." />
-            <marker date="1431422990368" expanded="true" signature="1289:1350" placeholder="select test,..wg_test..." />
+            <marker date="1431438709082" expanded="true" signature="494:551" placeholder="insert into ..." />
+            <marker date="1431438709082" expanded="true" signature="1288:1349" placeholder="select test,..wg_test..." />
           </folding>
         </state>
       </provider>
@@ -580,8 +564,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="1640" max-vertical-offset="2480">
           <caret line="99" column="47" selection-start-line="99" selection-start-column="47" selection-end-line="99" selection-end-column="47" />
           <folding>
-            <marker date="1431422938402" expanded="true" signature="5509:5521" placeholder="insert into ..." />
-            <marker date="1431422938402" expanded="true" signature="6832:6844" placeholder="delete from ..." />
+            <marker date="1431438682085" expanded="true" signature="5023:5035" placeholder="insert into ..." />
+            <marker date="1431438682085" expanded="true" signature="6346:6358" placeholder="delete from ..." />
           </folding>
         </state>
       </provider>
@@ -607,8 +591,8 @@
           <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
           <folding>
             <element signature="e#6#45#0#PHP" expanded="true" />
-            <marker date="1431422990368" expanded="true" signature="495:552" placeholder="insert into ..." />
-            <marker date="1431422990368" expanded="true" signature="1289:1350" placeholder="select test,..wg_test..." />
+            <marker date="1431438709082" expanded="true" signature="494:551" placeholder="insert into ..." />
+            <marker date="1431438709082" expanded="true" signature="1288:1349" placeholder="select test,..wg_test..." />
           </folding>
         </state>
       </provider>
@@ -654,8 +638,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="220" max-vertical-offset="920">
           <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding>
-            <marker date="1431422938402" expanded="true" signature="5509:5521" placeholder="insert into ..." />
-            <marker date="1431422938402" expanded="true" signature="6832:6844" placeholder="delete from ..." />
+            <marker date="1431438682085" expanded="true" signature="5023:5035" placeholder="insert into ..." />
+            <marker date="1431438682085" expanded="true" signature="6346:6358" placeholder="delete from ..." />
           </folding>
         </state>
       </provider>
@@ -681,8 +665,8 @@
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="54" />
           <folding>
             <element signature="e#6#45#0#PHP" expanded="true" />
-            <marker date="1431422990368" expanded="true" signature="495:552" placeholder="insert into ..." />
-            <marker date="1431422990368" expanded="true" signature="1289:1350" placeholder="select test,..wg_test..." />
+            <marker date="1431438709082" expanded="true" signature="494:551" placeholder="insert into ..." />
+            <marker date="1431438709082" expanded="true" signature="1288:1349" placeholder="select test,..wg_test..." />
           </folding>
         </state>
       </provider>
@@ -720,8 +704,8 @@
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="54" />
           <folding>
             <element signature="e#6#45#0#PHP" expanded="true" />
-            <marker date="1431422990368" expanded="true" signature="495:552" placeholder="insert into ..." />
-            <marker date="1431422990368" expanded="true" signature="1289:1350" placeholder="select test,..wg_test..." />
+            <marker date="1431438709082" expanded="true" signature="494:551" placeholder="insert into ..." />
+            <marker date="1431438709082" expanded="true" signature="1288:1349" placeholder="select test,..wg_test..." />
           </folding>
         </state>
       </provider>
@@ -759,8 +743,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#6#45#0#PHP" expanded="true" />
-            <marker date="1431422990368" expanded="true" signature="495:552" placeholder="insert into ..." />
-            <marker date="1431422990368" expanded="true" signature="1289:1350" placeholder="select test,..wg_test..." />
+            <marker date="1431438709082" expanded="true" signature="494:551" placeholder="insert into ..." />
+            <marker date="1431438709082" expanded="true" signature="1288:1349" placeholder="select test,..wg_test..." />
           </folding>
         </state>
       </provider>
@@ -793,7 +777,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.54137444" vertical-offset="19734" max-vertical-offset="22040">
           <caret line="1006" column="44" selection-start-line="1006" selection-start-column="37" selection-end-line="1006" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -824,52 +807,75 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/includes/public/wg-loader.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.1538463" vertical-offset="0" max-vertical-offset="300">
+        <state vertical-scroll-proportion="0.0" vertical-offset="160" max-vertical-offset="300">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../bin/apache/apache2.4.9/conf/httpd.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31630972" vertical-offset="2868" max-vertical-offset="11200">
+          <caret line="153" column="0" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/library/class.wg.database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.6923075" vertical-offset="0" max-vertical-offset="360">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wg-config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.0" vertical-offset="0" max-vertical-offset="380">
-          <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="50" />
+        <state vertical-scroll-proportion="-7.6923075" vertical-offset="0" max-vertical-offset="380">
+          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
           <folding>
             <element signature="e#6#37#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/includes/library/class.wg.database.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.1538463" vertical-offset="0" max-vertical-offset="360">
-          <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/includes/library/class.wg.pdo.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.076923" vertical-offset="4960" max-vertical-offset="5660">
-          <caret line="265" column="24" selection-start-line="265" selection-start-column="24" selection-end-line="265" selection-end-column="35" />
+        <state vertical-scroll-proportion="-8.038462" vertical-offset="551" max-vertical-offset="5360">
+          <caret line="38" column="19" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="19" />
           <folding>
-            <marker date="1431422938402" expanded="true" signature="5509:5521" placeholder="insert into ..." />
-            <marker date="1431422938402" expanded="true" signature="6832:6844" placeholder="delete from ..." />
+            <marker date="1431438682085" expanded="true" signature="5023:5035" placeholder="insert into ..." />
+            <marker date="1431438682085" expanded="true" signature="6346:6358" placeholder="delete from ..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24263674" vertical-offset="547" max-vertical-offset="1280">
-          <caret line="36" column="2" selection-start-line="36" selection-start-column="2" selection-end-line="36" selection-end-column="2" />
+        <state vertical-scroll-proportion="0.79345953" vertical-offset="679" max-vertical-offset="1300">
+          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
           <folding>
             <element signature="e#6#45#0#PHP" expanded="true" />
-            <marker date="1431422990368" expanded="true" signature="495:552" placeholder="insert into ..." />
-            <marker date="1431422990368" expanded="true" signature="1289:1350" placeholder="select test,..wg_test..." />
+            <marker date="1431438709082" expanded="true" signature="494:551" placeholder="insert into ..." />
+            <marker date="1431438709082" expanded="true" signature="1288:1349" placeholder="select test,..wg_test..." />
           </folding>
         </state>
       </provider>
     </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

@@ -35,25 +35,10 @@ class WG_PDO implements WG_Database{
      */
     public function query( $sql ){
         if( empty($sql) ) return false;
-
-        if( strtolower(substr(trim($sql),0,6)) == 'select' ){
-            try {
-                $rs = '';
-                $stmt = $this -> pdo -> query( $sql );
-                if( $stmt ){
-                    $stmt -> setFetchMode(PDO::FETCH_OBJ);
-                    $rs = $stmt -> fetchAll();
-                }
-                return $rs;
-            } catch ( PDOException $e ){
-                return $e -> getMessage();
-            }
-        }else{
-            try {
-                return $this -> pdo -> exec( $sql );
-            } catch ( PDOException $e ){
-                return $e -> getMessage();
-            }
+        try {
+            return $this -> pdo -> exec( $sql );
+        } catch ( PDOException $e ){
+            return $e -> getMessage();
         }
     }
 
