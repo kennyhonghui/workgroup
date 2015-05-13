@@ -12,7 +12,7 @@ class WG_PDO implements WG_Database{
     private $charset;
     private $dbname;
 
-    private $stmt;
+    private $transaction;
     private $pdo;
 
     /**
@@ -30,15 +30,31 @@ class WG_PDO implements WG_Database{
     }
 
     /**
-     * @param $sql
-     * @return bool|string
+     * @param $param
+     * @return bool|int|string
      */
-    public function query( $sql ){
-        if( empty($sql) ) return false;
-        try {
-            return $this -> pdo -> exec( $sql );
-        } catch ( PDOException $e ){
-            return $e -> getMessage();
+    public function query( $param ){
+        if( empty($param) ) return false;
+
+        $statement = '';
+        if( is_string($param) ){
+            $statement = $param;
+        } elseif( is_array($param) ) {
+            $statement = $this -> arrayToSQLStatement( $param );
+        }
+        if( $statement ) {
+            try {
+                $stmt = $this -> pdo -> query( $statement );
+                if ($stmt){
+                    return $stmt -> rowCount();
+                } else {
+                    return 'Fail to execute SQL statement: ' . $statement;
+                }
+            } catch ( PDOException $e ){
+                return $e -> getMessage();
+            }
+        } else {
+            return false;
         }
     }
 
@@ -73,35 +89,26 @@ class WG_PDO implements WG_Database{
             return false;
         }
 
-        $this -> stmt = $this -> pdo -> prepare( $statement );
-        return $this -> stmt;
+        $this -> transaction = $this -> pdo -> prepare( $statement );
+        return $this -> transaction;
     }
 
     /**
-     * Execute SQL statement which prepared.
+     * Execute SQL statement is prepared.
      */
     public function execute(){
         $params = func_get_args();
         $params = empty($params) ? array(null) : $params;
 
-        if( empty($params) || empty($this -> stmt ))  return false;
+        if( empty($params) || empty($this -> transaction ))  return false;
 
         try {
-            $queryString = $this -> stmt -> queryString;
-
-            if( substr(trim($queryString), 0, 6) == 'select' ){
-                $this -> stmt -> execute( $params );
-                $this -> stmt -> setFetchMode( PDO::FETCH_OBJ );
-                return $this -> stmt -> fetchAll();
+            $rs = $this -> transaction -> execute( $params );
+            if( $rs ) {
+                return $this -> transaction -> rowCount();
             } else {
-                $rs = $this -> stmt -> execute( $params );
-                if( $rs ) {
-                    return $this->stmt->rowCount();
-                } else {
-                    return $rs;
-                }
+                return $rs;
             }
-
         } catch ( PDOException $e ) {
             return $e -> getMessage();
         }
@@ -248,7 +255,7 @@ class WG_PDO implements WG_Database{
                     if( false === $rs ){
                        return array();
                     }else{
-                        return $rs;
+                       return $rs;
                     }
                 }
             } else {
